@@ -1,0 +1,64 @@
+1634321151999:# データの作成
+1634321152013:k.stores = 20
+1634321152026:k.weeks = 104
+1634321152038:store.df = data.frame(matrix(NA, ncol=10, nrow=k.stores*k.weeks))
+1634321152053:names(store.df) = c("storeNum", "Year", "Week", "p1sales", "p2sales",
+1634321158972:# データの作成
+1634321158984:k.stores = 20
+1634321158999:k.weeks = 104
+1634321159012:store.df = data.frame(matrix(NA, ncol=10, nrow=k.stores*k.weeks))
+1634321159025:names(store.df) = c("storeNum", "Year", "Week", "p1sales", "p2sales",
+1634321159036:"p1price", "p2price", "p1prom", "p2prom", "country")
+1634321163311:dim(store.df)
+1634321165516:# 列へのデータ代入
+1634321165528:store.num = 101:(100+k.stores)
+1634321167528:store.num
+1634321169989:store.cty = c(rep("US", 3), rep("DE", 5), rep("GB", 3), rep("BR", 2),
+1634321170002:rep("JP", 4), rep("AU", 1), rep("CN", 2))
+1634321171390:store.cty
+1634321173054:length(store.cty)
+1634321174565:store.df$storeNum = rep(store.num, each=k.weeks)
+1634321175305:store.df$storeNum
+1634321176371:store.df$country = rep(store.cty, each=k.weeks)
+1634321176967:store.df$country
+1634321178485:rm(store.num, store.cty)  # clean up
+1634321184114:store.df$Week = rep(1:52, time=k.stores*2)  # 1~52をk.stores*2回繰り返す
+1634321185774:store.df$Week
+1634321187408:store.df$Year = rep(rep(1:2, each=k.weeks/2), times=k.stores)  # (1をk.weeks/2回、2をk.weeks/2回)をk.storesを繰り返す
+1634321188983:store.df$Year
+1634321191038:str(store.df)
+1634321194512:store.df$storeNum = factor(store.df$storeNum)
+1634321195698:store.df$country = factor(store.df$country)
+1634321196689:str(store.df)
+1634321201674:head(store.df)
+1634321202864:head(store.df, 120)
+1634321204036:tail(store.df, 120)
+1634321206460:# シュミレーションデータの作成
+1634321206471:set.seed(98250)
+1634321210038:store.df$p1prom = rbinom(n=nrow(store.df), size=1, p=0.1)
+1634321213850:store.df$p2prom = rbinom(n=nrow(store.df), size=1, p=0.15)
+1634321215913:store.df$p1price = sample(x=c(2.19, 2.29, 2.49, 2.79, 2.99), size=nrow(store.df), replace=TRUE)
+1634321217414:store.df$p2price = sample(x=c(2.29, 2.49, 2.59, 2.99, 3.19), size=nrow(store.df), replace=TRUE)
+1634321219121:head(store.df)
+1634321220989:tmp.sales1 = rpois(nrow(store.df), lambda=120)  # lambda = mean of sales per week
+1634321221944:tmp.sales2 = rpois(nrow(store.df), lambda=100)
+1634321222665:tmp.sales1 = tmp.sales1 * log(store.df$p2price) / log(store.df$p1price)
+1634321223387:tmp.sales2 = tmp.sales2 * log(store.df$p1price) / log(store.df$p2price)
+1634321224084:store.df$p1sales = floor(tmp.sales1 * (1 + store.df$p1prom*0.3))
+1634321224806:store.df$p2sales = floor(tmp.sales2 * (1 + store.df$p2prom*0.4))
+1634321225467:head(store.df)
+1634321227781:library(car)
+1634321368266:store.df$p1prom = rbinom(n=nrow(store.df), size=1, p=0.1)
+1634321368808:store.df$p2prom = rbinom(n=nrow(store.df), size=1, p=0.15)
+1634321369305:store.df$p1price = sample(x=c(2.19, 2.29, 2.49, 2.79, 2.99), size=nrow(store.df), replace=TRUE)
+1634321369843:store.df$p2price = sample(x=c(2.29, 2.49, 2.59, 2.99, 3.19), size=nrow(store.df), replace=TRUE)
+1634321370389:head(store.df)
+1634321371060:tmp.sales1 = rpois(nrow(store.df), lambda=120)  # lambda = mean of sales per week
+1634321371576:tmp.sales2 = rpois(nrow(store.df), lambda=100)
+1634321372163:tmp.sales1 = tmp.sales1 * log(store.df$p2price) / log(store.df$p1price)
+1634321372633:tmp.sales2 = tmp.sales2 * log(store.df$p1price) / log(store.df$p2price)
+1634321373727:store.df$p1sales = floor(tmp.sales1 * (1 + store.df$p1prom*0.3))
+1634321374355:store.df$p2sales = floor(tmp.sales2 * (1 + store.df$p2prom*0.4))
+1634321374975:head(store.df)
+1634321375989:library(car)
+1634321382331:some(store.df, 10)
