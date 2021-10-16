@@ -1,0 +1,166 @@
+
+
+# session4-1 --------------------------------------------------------------
+
+# 顧客データの作成
+set.seed(21821)
+ncust = 1000
+cust.df = data.frame(cust.id=factor(1:ncust))
+head(cust.df)
+
+cust.df$age = rnorm(n=ncust, mean=35, sd=5)
+cust.df$credit.score = rnorm(n=ncust, mean=3*cust.df$age+620, sd=50)
+cust.df$email = factor(sample(c("yes", "no"), size=ncust, replace=TRUE, prob=c(0.8, 0.2)))
+cust.df$distance.to.store = exp(rnorm(n=ncust, mean=2, sd=1.2))
+
+# データフレームのチェック
+dim(cust.df)
+head(cust.df)
+tail(cust.df)
+some(cust.df)
+str(cust.df)
+summary(cust.df)
+describe(cust.df)
+
+cust.df$online.visits = 
+  rnbinom(ncust, size=0.3,
+          mu=15+ifelse(cust.df$email=="yes", 15, 0)-0.7*(cust.df$age-median(cust.df$age)))
+
+cust.df$online.trans = 
+  rnbinom(ncust, size=cust.df$online.visits, prob=0.3)
+
+cust.df$online.spend =
+  exp(rnorm(ncust, mean=3, sd=0.1)) * cust.df$online.trans
+
+cust.df$store.trans =
+  rnbinom(ncust, size=5, mu=3/sqrt(cust.df$distance.to.store))
+
+cust.df$store.spend =
+  exp(rnorm(ncust, mean=3.5, sd=0.4)) * cust.df$store.trans
+
+# データフレームのチェック
+dim(cust.df)
+head(cust.df)
+tail(cust.df)
+some(cust.df)
+str(cust.df)
+summary(cust.df)
+describe(cust.df)
+
+# 満足度調査への回答を作成
+sat.overall = rnorm(ncust, mean=3.1, sd=0.7)
+summary(sat.overall)
+sat.service = floor(sat.overall + rnorm(ncust, mean=0.5, sd=0.4))
+sat.selection = floor(sat.overall + rnorm(ncust, mean=-0.2, sd=0.6))
+summary(cbind(sat.service, sat.selection))
+
+sat.service[sat.service > 5] = 5
+sat.service[sat.service < 1] = 1
+sat.selection[sat.selection > 5] = 5
+sat.selection[sat.selection < 1] = 1
+summary(cbind(sat.service, sat.selection))
+
+# 非回答データ
+no.response = as.logical(rbinom(ncust, size=1, prob=cust.df$age/100))
+no.response
+sat.service[no.response] = NA
+sat.selection[no.response] = NA
+summary(cbind(sat.service, sat.selection))
+
+cust.df$sat.service = sat.service
+cust.df$sat.selection = sat.selection
+summary(cust.df)
+
+rm(ncust, sat.overall, sat.service, sat.selection, no.response)
+
+# 散布図でデータ間の関係を調べる
+str(cust.df)
+
+plot(x=cust.df$age, y=cust.df$credit.score)
+
+plot(cust.df$age, cust.df$credit.score,
+     col="blue",
+     xlim=c(15, 55), ylim=c(500, 900),
+     main="Active Customers as of June 2014",
+     xlab="Customer Age (years)", ylab="Customer Credit Score")
+abline(h=mean(cust.df$credit.score), col="dark blue", lty="dotted")
+abline(v=mean(cust.df$age), col="dark blue", lty="dotted")
+
+methods(plot)
+
+par(mfcol=c(1, 2))
+
+plot(cust.df$store.spend, cust.df$online.spend,
+     main="Customers as of June 2014",
+     xlab="Prior 12 months in-store sales ($)",
+     ylab="Prior 12 months online sales ($)",
+     cex=0.7)
+
+plot(cust.df$store.spend, cust.df$online.spend,
+     main="Customers as of June 2014",
+     xlab="Prior 12 months in-store sales ($)",
+     ylab="Prior 12 months online sales ($)")
+
+par(mfcol=c(1, 1))
+
+hist(cust.df$store.spend,
+     breaks=(0:ceiling(max(cust.df$store.spend)/10))*10,
+     main="Customers as of June 2014",
+     xlab="Prior 12 months in-store sales ($)",
+     ylab="Count of customers")
+
+?ceiling
+
+my.col = c("black", "green3")
+my.pch = c(1, 19)
+
+head(cust.df$email)
+as.numeric(head(cust.df$email))
+
+my.col[as.numeric(head(cust.df$email))]
+my.col[head(cust.df$email)]
+
+par(mfcol=c(1, 2))
+
+plot(cust.df$store.spend, cust.df$online.spend,
+     cex=0.7,
+     col=my.col[cust.df$email],
+     pch=my.pch[cust.df$email],
+     main="Customers as of June 2014",
+     xlab="Prior 12 months in-store sales ($)",
+     ylab="Prior 12 months online sales ($)")
+
+plot(cust.df$store.spend, cust.df$online.spend,
+     cex=0.7,
+     col=my.col[cust.df$email],
+     main="Customers as of June 2014",
+     xlab="Prior 12 months in-store sales ($)",
+     ylab="Prior 12 months online sales ($)")
+
+par(mfcol=c(1, 1))
+
+# 凡例をつける
+plot(cust.df$store.spend, cust.df$online.spend,
+     cex=0.7,
+     col=my.col[cust.df$email],
+     pch=my.pch[cust.df$email],
+     main="Customers as of June 2014",
+     xlab="Prior 12 months in-store sales ($)",
+     ylab="Prior 12 months online sales ($)")
+legend(x="topright",
+       legend=paste("email on file:", levels(cust.df$email)),
+       col=my.col, pch=my.pch)
+
+# 対数軸に変換
+plot(cust.df$store.spend + 1, cust.df$online.spend +1,
+     log="xy",
+     cex=0.7,
+     col=my.col[cust.df$email],
+     pch=my.pch[cust.df$email],
+     main="Customers as of June 2014",
+     xlab="Prior 12 months in-store sales ($)",
+     ylab="Prior 12 months online sales ($)")
+legend(x="topright",
+       legend=paste("email on file:", levels(cust.df$email)),
+       col=my.col, pch=my.pch)
+

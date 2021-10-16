@@ -1,1 +1,1 @@
-[]
+[{"handle":"2FD93A80","caption":"Terminal 1","show_on_output":false,"interaction_mode":2,"max_output_lines":1000,"buffered_output":"\n\n","exit_code":129,"terminal_sequence":1,"allow_restart":true,"title":"/home/rstudio/work","child_procs":false,"shell_type":"default","channel_mode":1,"channel_id":"3719","alt_buffer":false,"cwd":"/proc/816/cwd","cols":162,"rows":20,"restarted":false,"autoclose":1,"zombie":false,"track_env":true}]
