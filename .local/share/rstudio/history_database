@@ -62,3 +62,782 @@
 1634321374975:head(store.df)
 1634321375989:library(car)
 1634321382331:some(store.df, 10)
+1634353604292:some(store.df, 10)
+1634353615976:load("~/work/.RData")
+1634353634505:library(car)
+1634353635822:some(store.df, 10)
+1634353679386:chr(store.df)
+1634353689161:str(store.df)
+1634353837021:table(store.df$p1price)
+1634353894165:p1.table = table(store.df$p1price)
+1634353904312:str(p1.table)
+1634353947084:plot(p1.table)
+1634354429007:table(store.df$p1price, store.df$p1prom)
+1634354528850:p1.table2 = table(store.df$p1price, store.df$p1prom)
+1634354609041:p1.table2[, 2] / (p1.table[, 1] + p1.table[, 2])
+1634354623914:p1.table2[, 2] / (p1.table2[, 1] + p1.table2[, 2])
+1634370019075:p1.table2[, 2] / (p1.table2[, 1] + p1.table2[, 2])
+1634370691190:# 連続関数
+1634370691200:min(store.df$p1sales)
+1634370707280:max(store.df$p2sales)
+1634370733299:mean(store.df$p1prom)
+1634370740432:str(store.df)
+1634370774024:median(store.df$p2sales)
+1634370803646:var(store.df$p1sales)
+1634370824446:sd(store.df$p1sales)
+1634370845520:IQR(store.df$p1sales)
+1634370918971:mad(store.df$p1sales)
+1634370952768:quantile(store.df$p1sales, probs=c(0.25, 0.50, 0.75))
+1634371029393:quantile(store.df$p1sales, probs=c(0.05, 0.95))
+1634371052939:quantile(store.df$p1sales, probs=0:10/10)
+1634371129578:quantile(store.df$p1sales, probs=seq(0, 1, 0.1))
+1634371147883:quantile(store.df$p1sales, probs=seq(from=0, to=1, by=0.1))
+1634371321887:names(mysummary.df) = c("Median Sales", "IQR")
+1634371326997:mysummary.df = data.frame(matrix(NA, nrow=2, ncol=2))
+1634371327681:names(mysummary.df) = c("Median Sales", "IQR")
+1634371370815:rownames(mysummary.df) = c("Product 1", "Product 2")
+1634371449809:mysummary.df["product 1", "Median Sales"] = median(store.df$p1sales)
+1634371451458:mysummary.df["product 2", "Median Sales"] = median(store.df$p2sales)
+1634371472666:mysummary.df = data.frame(matrix(NA, nrow=2, ncol=2))
+1634371512981:mysummary.df["Product 1", "IQR"] = IQR(store.df$p1sales)
+1634371515190:mysummary.df = data.frame(matrix(NA, nrow=2, ncol=2))
+1634371517118:names(mysummary.df) = c("Median Sales", "IQR")
+1634371517721:rownames(mysummary.df) = c("Product 1", "Product 2")
+1634371519487:mysummary.df["Product 1", "Median Sales"] = median(store.df$p1sales)
+1634371520062:mysummary.df["Product 2", "Median Sales"] = median(store.df$p2sales)
+1634371520582:mysummary.df["Product 1", "IQR"] = IQR(store.df$p1sales)
+1634371521108:mysummary.df["Product 2", "IQR"] = IQR(store.df$p2sales)
+1634371528634:mysummary.df
+1634371659590:summary(store.df)
+1634371723806:summary(store.df$Year)
+1634371791453:summary(store.df, digits=2)
+1634371890601:describe(store.df)
+1634372032054:describe(store.df, [, c(2, 4:9)])
+1634372044709:describe(store.df[, c(2, 4:9)])
+1634372195285:apply(store.df[, 2:9], MARGIN=2, FUN=mean)
+1634372233534:apply(store.df[, 2:9], MARGIN=1, FUN=mean)
+1634372260106:apply(store.df[, 2:9], MARGIN=2, FUN=SUM)
+1634372264327:apply(store.df[, 2:9], MARGIN=2, FUN=sum)
+1634372274003:apply(store.df[, 2:9], MARGIN=2, FUN=sd)
+1634372332145:apply(store.df[, 2:9], MARGIN=2, FUN=function(x){mean(x)-median(x)})
+1634372600602:hist(store.df$p1sales)
+1634372792631:hist(store.df$p1sales,
+1634372792644:main="Product 1 Weekly Sales Frequencies, All stores",
+1634372792656:xlab="Product 1 Sales (Units)",
+1634372792668:ylab="Count")
+1634372919624:hist(store.df$p1sales,
+1634372919636:main="Product 1 Weekly Sales Frequencies, All stores",
+1634372919649:xlab="Product 1 Sales (Units)",
+1634372919662:ylab="Count",
+1634372919675:breaks=30,
+1634372919687:col="lightblue")
+1634373048507:hist(store.df$p1sales,
+1634373048521:main="Product 1 Weekly Sales Frequencies, All stores",
+1634373048534:xlab="Product 1 Sales (Units)",
+1634373048548:ylab="Count",
+1634373048562:breaks=30,
+1634373048575:col="lightblue",
+1634373048590:freq=FALSE,
+1634373048602:xaxt="n")
+1634373131478:axis(side=1, at=seq(60, 300, by=20))
+1634373261927:lines(density(store.df$p1sales, bw=10),
+1634373261939:type="1",
+1634373261952:col="darked",
+1634373261966:lwd=2)
+1634373271803:lines(density(store.df$p1sales, bw=10),
+1634373271818:type="l",
+1634373271829:col="darked",
+1634373271844:lwd=2)
+1634373282558:lines(density(store.df$p1sales, bw=10),
+1634373282573:type="l",
+1634373282585:col="darkred",
+1634373282598:lwd=2)
+1634373426437:hist(store.df$p2sales,
+1634373426451:main="Product 2 Weekly Sales Frequencies, All stores",
+1634373426462:xlab="Product 2 Sales (Units)",
+1634373426475:ylab="Count",
+1634373426488:breaks=30,
+1634373426501:col="lightblue",
+1634373426512:freq=FALSE,
+1634373426524:xaxt="n")
+1634373429160:axis(side=1, at=seq(60, 300, by=20))
+1634373435147:hist(store.df$p1sales,
+1634373435160:main="Product 1 Weekly Sales Frequencies, All stores",
+1634373435174:xlab="Product 1 Sales (Units)",
+1634373435187:ylab="Count",
+1634373435200:breaks=30,
+1634373435213:col="lightblue",
+1634373435225:freq=FALSE,
+1634373435237:xaxt="n")
+1634373435921:axis(side=1, at=seq(60, 300, by=20))
+1634373445161:summary(store.df)
+1634373479313:hist(store.df$p2sales,
+1634373479327:main="Product 2 Weekly Sales Frequencies, All stores",
+1634373479340:xlab="Product 2 Sales (Units)",
+1634373479354:ylab="Count",
+1634373479368:breaks=30,
+1634373479384:col="lightblue",
+1634373479396:freq=FALSE,
+1634373479409:xaxt="n")
+1634373480018:axis(side=1, at=seq(50, 300, by=20))
+1634373481128:lines(density(store.df$p2sales, bw=10),
+1634373481141:type="l",
+1634373481154:col="darkred",
+1634373481168:lwd=2)
+1634373494278:axis(side=1, at=seq(40, 300, by=20))
+1634373495548:lines(density(store.df$p2sales, bw=10),
+1634373495561:type="l",
+1634373495574:col="darkred",
+1634373495586:lwd=2)
+1634373804315:layout(matrix(1:2, ncol=2))
+1634373809399:lines(density(store.df$p1sales, bw=10),
+1634373809413:type="l",
+1634373809425:col="darkred",
+1634373809438:lwd=2)
+1634373818031:layout(matrix(1:2, ncol=2))
+1634373822977:hist(store.df$p1sales,
+1634373822991:main="Product 1 Weekly Sales Frequencies, All stores",
+1634373823004:xlab="Product 1 Sales (Units)",
+1634373823016:ylab="Count",
+1634373823031:breaks=30,
+1634373823045:col="lightblue",
+1634373823059:freq=FALSE,
+1634373823072:xaxt="n")
+1634373826275:axis(side=1, at=seq(60, 300, by=20))
+1634373828355:lines(density(store.df$p1sales, bw=10),
+1634373828367:type="l",
+1634373828378:col="darkred",
+1634373828390:lwd=2)
+1634373829852:hist(store.df$p2sales,
+1634373829865:main="Product 2 Weekly Sales Frequencies, All stores",
+1634373829877:xlab="Product 2 Sales (Units)",
+1634373829892:ylab="Count",
+1634373829905:breaks=30,
+1634373829918:col="lightblue",
+1634373829929:freq=FALSE,
+1634373829942:xaxt="n")
+1634373831328:axis(side=1, at=seq(40, 300, by=20))
+1634373833104:lines(density(store.df$p2sales, bw=10),
+1634373833119:type="l",
+1634373833130:col="darkred",
+1634373833144:lwd=2)
+1634373930287:hist(store.df$p1sales,
+1634373930299:main="Product 1 Weekly Sales Frequencies, All stores",
+1634373930312:xlab="Product 1 Sales (Units)",
+1634373930324:ylab="Count",
+1634373930337:breaks=30,
+1634373930349:col="lightblue",
+1634373930361:freq=FALSE,
+1634373930374:xaxt="n",
+1634373930386:yaxt="n")
+1634373959649:axis(side=1, at=seq(60, 300, by=20))
+1634373967389:axis(side=1, at=seq(40, 300, by=20))
+1634374001531:axis(side=2, at=seq(0, 0.2, by=0.05))
+1634374008887:axis(side=2, at=seq(0, 0.02, by=0.005))
+1634374029693:hist(store.df$p1sales,
+1634374029706:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374029721:xlab="Product 1 Sales (Units)",
+1634374029734:ylab="Count",
+1634374029747:breaks=30,
+1634374029760:col="lightblue",
+1634374029774:freq=FALSE,
+1634374029788:xaxt="n",
+1634374029800:yaxt="n")
+1634374034170:layout(matrix(1:2, ncol=2))
+1634374035200:hist(store.df$p1sales,
+1634374035209:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374035219:xlab="Product 1 Sales (Units)",
+1634374035229:ylab="Count",
+1634374035239:breaks=30,
+1634374035249:col="lightblue",
+1634374035258:freq=FALSE,
+1634374035269:xaxt="n",
+1634374035280:yaxt="n")
+1634374036970:axis(side=1, at=seq(40, 300, by=20))
+1634374037546:axis(side=2, at=seq(0, 0.02, by=0.005))
+1634374041020:lines(density(store.df$p1sales, bw=10),
+1634374041033:type="l",
+1634374041045:col="darkred",
+1634374041058:lwd=2)
+1634374080609:hist(store.df$p2sales,
+1634374080622:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374080636:xlab="Product 2 Sales (Units)",
+1634374080648:ylab="Count",
+1634374080662:breaks=30,
+1634374080674:col="lightblue",
+1634374080686:freq=FALSE,
+1634374080699:xaxt="n",
+1634374080711:yaxt="n")
+1634374096395:axis(side=1, at=seq(40, 300, by=20))
+1634374097193:axis(side=2, at=seq(0, 0.02, by=0.005))
+1634374099903:lines(density(store.df$p2sales, bw=10),
+1634374099917:type="l",
+1634374099929:col="darkred",
+1634374099943:lwd=2)
+1634374308714:layout(matrix(1:2, ncol=2))
+1634374372793:hist(store.df$p1sales,
+1634374372805:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374372818:xlab="Product 1 Sales (Units)",
+1634374372830:ylab="Count",
+1634374372843:breaks=30,
+1634374372855:col="lightblue",
+1634374372867:freq=FALSE,
+1634374372879:xlim=c(40, 260),
+1634374372891:ylim=c(0, 0.02))
+1634374411935:lines(density(store.df$p1sales, bw=10),
+1634374411947:type="l",
+1634374411959:col="darkred",
+1634374411975:lwd=2)
+1634374433371:hist(store.df$p2sales,
+1634374433383:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374433395:xlab="Product 2 Sales (Units)",
+1634374433409:ylab="Count",
+1634374433423:breaks=30,
+1634374433436:col="lightblue",
+1634374433449:freq=FALSE,
+1634374433461:xlim=c(40, 260),
+1634374433475:ylim=c(0, 0.02))
+1634374435883:lines(density(store.df$p2sales, bw=10),
+1634374435893:type="l",
+1634374435904:col="darkred",
+1634374435916:lwd=2)
+1634374458230:hist(store.df$p1sales,
+1634374458242:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374458255:xlab="Product 1 Sales (Units)",
+1634374458269:ylab="Count",
+1634374458280:breaks=40,
+1634374458294:col="lightblue",
+1634374458308:freq=FALSE,
+1634374458320:xlim=c(40, 260),
+1634374458331:ylim=c(0, 0.02))
+1634374459622:lines(density(store.df$p1sales, bw=10),
+1634374459636:type="l",
+1634374459648:col="darkred",
+1634374459662:lwd=2)
+1634374466138:hist(store.df$p2sales,
+1634374466151:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374466163:xlab="Product 2 Sales (Units)",
+1634374466178:ylab="Count",
+1634374466190:breaks=40,
+1634374466202:col="lightblue",
+1634374466214:freq=FALSE,
+1634374466227:xlim=c(40, 260),
+1634374466241:ylim=c(0, 0.02))
+1634374467384:lines(density(store.df$p2sales, bw=10),
+1634374467394:type="l",
+1634374467405:col="darkred",
+1634374467417:lwd=2)
+1634374473136:hist(store.df$p1sales,
+1634374473148:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374473160:xlab="Product 1 Sales (Units)",
+1634374473175:ylab="Count",
+1634374473189:breaks=50,
+1634374473202:col="lightblue",
+1634374473215:freq=FALSE,
+1634374473229:xlim=c(40, 260),
+1634374473241:ylim=c(0, 0.02))
+1634374473934:lines(density(store.df$p1sales, bw=10),
+1634374473946:type="l",
+1634374473959:col="darkred",
+1634374473973:lwd=2)
+1634374479852:hist(store.df$p2sales,
+1634374479865:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374479876:xlab="Product 2 Sales (Units)",
+1634374479889:ylab="Count",
+1634374479903:breaks=50,
+1634374479915:col="lightblue",
+1634374479927:freq=FALSE,
+1634374479939:xlim=c(40, 260),
+1634374479951:ylim=c(0, 0.02))
+1634374480894:lines(density(store.df$p2sales, bw=10),
+1634374480906:type="l",
+1634374480921:col="darkred",
+1634374480935:lwd=2)
+1634374516604:hist(store.df$p1sales,
+1634374516613:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374516625:xlab="Product 1 Sales (Units)",
+1634374516637:ylab="Count",
+1634374516646:breaks=60,
+1634374516658:col="lightblue",
+1634374516673:freq=FALSE,
+1634374516686:xlim=c(40, 260),
+1634374516699:ylim=c(0, 0.02))
+1634374519395:lines(density(store.df$p1sales, bw=10),
+1634374519409:type="l",
+1634374519421:col="darkred",
+1634374519434:lwd=2)
+1634374523888:hist(store.df$p2sales,
+1634374523900:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374523912:xlab="Product 2 Sales (Units)",
+1634374523925:ylab="Count",
+1634374523938:breaks=60,
+1634374523951:col="lightblue",
+1634374523964:freq=FALSE,
+1634374523976:xlim=c(40, 260),
+1634374523988:ylim=c(0, 0.02))
+1634374525797:lines(density(store.df$p2sales, bw=10),
+1634374525811:type="l",
+1634374525824:col="darkred",
+1634374525837:lwd=2)
+1634374544889:hist(store.df$p1sales,
+1634374544903:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374544918:xlab="Product 1 Sales (Units)",
+1634374544932:ylab="Count",
+1634374544945:breaks=30,
+1634374544959:col="lightblue",
+1634374544970:freq=FALSE,
+1634374544983:xlim=c(40, 260),
+1634374544997:ylim=c(0, 0.02))
+1634374546239:lines(density(store.df$p1sales, bw=10),
+1634374546252:type="l",
+1634374546267:col="darkred",
+1634374546282:lwd=2)
+1634374550762:hist(store.df$p2sales,
+1634374550774:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374550787:xlab="Product 2 Sales (Units)",
+1634374550802:ylab="Count",
+1634374550816:breaks=30,
+1634374550829:col="lightblue",
+1634374550840:freq=FALSE,
+1634374550852:xlim=c(40, 260),
+1634374550865:ylim=c(0, 0.02))
+1634374551337:lines(density(store.df$p2sales, bw=10),
+1634374551352:type="l",
+1634374551364:col="darkred",
+1634374551378:lwd=2)
+1634374559020:hist(store.df$p1sales,
+1634374559034:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374559050:xlab="Product 1 Sales (Units)",
+1634374559065:ylab="Count",
+1634374559077:breaks=30,
+1634374559089:col="lightblue",
+1634374559103:freq=FALSE,
+1634374559115:xlim=c(40, 260),
+1634374559129:ylim=c(0, 0.04))
+1634374560411:lines(density(store.df$p1sales, bw=10),
+1634374560421:type="l",
+1634374560434:col="darkred",
+1634374560446:lwd=2)
+1634374569000:hist(store.df$p2sales,
+1634374569012:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374569025:xlab="Product 2 Sales (Units)",
+1634374569037:ylab="Count",
+1634374569049:breaks=30,
+1634374569063:col="lightblue",
+1634374569076:freq=FALSE,
+1634374569088:xlim=c(40, 260),
+1634374569102:ylim=c(0, 0.04))
+1634374569797:lines(density(store.df$p2sales, bw=10),
+1634374569809:type="l",
+1634374569826:col="darkred",
+1634374569837:lwd=2)
+1634374583613:hist(store.df$p1sales,
+1634374583625:main="Product 1 Weekly Sales Frequencies, All stores",
+1634374583638:xlab="Product 1 Sales (Units)",
+1634374583650:ylab="Count",
+1634374583664:breaks=30,
+1634374583676:col="lightblue",
+1634374583689:freq=FALSE,
+1634374583703:xlim=c(40, 260),
+1634374583715:ylim=c(0, 0.025))
+1634374584287:lines(density(store.df$p1sales, bw=10),
+1634374584301:type="l",
+1634374584313:col="darkred",
+1634374584326:lwd=2)
+1634374584882:hist(store.df$p2sales,
+1634374584895:main="Product 2 Weekly Sales Frequencies, All stores",
+1634374584907:xlab="Product 2 Sales (Units)",
+1634374584919:ylab="Count",
+1634374584931:breaks=30,
+1634374584944:col="lightblue",
+1634374584956:freq=FALSE,
+1634374584968:xlim=c(40, 260),
+1634374584981:ylim=c(0, 0.025))
+1634374585772:lines(density(store.df$p2sales, bw=10),
+1634374585784:type="l",
+1634374585799:col="darkred",
+1634374585812:lwd=2)
+1634374923439:bocplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+1634374923452:main="Weekly sales of P2, All stores", horizontal=TRUE)
+1634374931981:boxplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+1634374931995:main="Weekly sales of P2, All stores", horizontal=TRUE)
+1634375057889:close.screen(all=T)
+1634375065384:boxplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+1634375065397:main="Weekly sales of P2, All stores", horizontal=TRUE)
+1634375068479:close.screen(all=T)
+1634375073607:close.screen()
+1634375159000:?layout
+1634375208770:par(def.par)
+1634375253656:def.par <- par(no.readonly = TRUE)
+1634375254415:par(def.par)
+1634375258460:boxplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+1634375258473:main="Weekly sales of P2, All stores", horizontal=TRUE)
+1634375291285:layout(matrix(1, ncol=1))
+1634375293517:def.par <- par(no.readonly = TRUE)
+1634375295171:par(def.par)
+1634375299528:boxplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+1634375299541:main="Weekly sales of P2, All stores", horizontal=TRUE)
+1634375369942:def.par <- par(no.readonly = TRUE)  # リセット用
+1634375372000:layout(matrix(1:2, ncol=2))
+1634375373272:hist(store.df$p1sales,
+1634375373286:main="Product 1 Weekly Sales Frequencies, All stores",
+1634375373301:xlab="Product 1 Sales (Units)",
+1634375373314:ylab="Count",
+1634375373326:breaks=30,
+1634375373339:col="lightblue",
+1634375373351:freq=FALSE,
+1634375373363:xlim=c(40, 260),
+1634375373376:ylim=c(0, 0.025))
+1634375374128:lines(density(store.df$p1sales, bw=10),
+1634375374140:type="l",
+1634375374153:col="darkred",
+1634375374169:lwd=2)
+1634375374790:hist(store.df$p2sales,
+1634375374803:main="Product 2 Weekly Sales Frequencies, All stores",
+1634375374816:xlab="Product 2 Sales (Units)",
+1634375374829:ylab="Count",
+1634375374843:breaks=30,
+1634375374856:col="lightblue",
+1634375374868:freq=FALSE,
+1634375374881:xlim=c(40, 260),
+1634375374894:ylim=c(0, 0.025))
+1634375375412:lines(density(store.df$p2sales, bw=10),
+1634375375426:type="l",
+1634375375439:col="darkred",
+1634375375455:lwd=2)
+1634375376095:par(def.par)
+1634375379092:boxplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+1634375379105:main="Weekly sales of P2, All stores", horizontal=TRUE)
+1634375512923:summary(store.df)
+1634375761058:boxplot(store.df$p2sales ~ store.df$storeNum, horizontal=TRUE,
+1634375761068:ylab="Store", xlab="Weekly unit sales", las=1,
+1634375761078:main="Weekly sales of P2, by store")
+1634376628776:def.par <- par(no.readonly = TRUE)  # リセット用
+1634376630003:par(mfcol=c(1, 2))
+1634376632455:hist(store.df$p1sales,
+1634376632466:main="Product 1 Weekly Sales Frequencies, All stores",
+1634376632476:xlab="Product 1 Sales (Units)",
+1634376632486:ylab="Count",
+1634376632496:breaks=30,
+1634376632506:col="lightblue",
+1634376632516:freq=FALSE,
+1634376632527:xlim=c(40, 260),
+1634376632538:ylim=c(0, 0.025))
+1634376633761:lines(density(store.df$p1sales, bw=10),
+1634376633774:type="l",
+1634376633786:col="darkred",
+1634376633798:lwd=2)
+1634376634537:hist(store.df$p2sales,
+1634376634550:main="Product 2 Weekly Sales Frequencies, All stores",
+1634376634562:xlab="Product 2 Sales (Units)",
+1634376634575:ylab="Count",
+1634376634587:breaks=30,
+1634376634599:col="lightblue",
+1634376634611:freq=FALSE,
+1634376634624:xlim=c(40, 260),
+1634376634636:ylim=c(0, 0.025))
+1634376635302:lines(density(store.df$p2sales, bw=10),
+1634376635314:type="l",
+1634376635327:col="darkred",
+1634376635339:lwd=2)
+1634376637644:par(def.par)  # デフォルトに戻す
+1634376640286:boxplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+1634376640299:main="Weekly sales of P2, All stores", horizontal=TRUE)
+1634376641672:boxplot(store.df$p2sales ~ store.df$storeNum, horizontal=TRUE,
+1634376641688:ylab="Store", xlab="Weekly unit sales", las=1,
+1634376641702:main="Weekly sales of P2, by store")
+1634376686900:# layout(matrix(1:2, ncol=2))
+1634376686912:?par
+1634377168651:boxplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+1634377168661:ylab="P2 promoted in store?", xlab="Weekly sales",
+1634377168671:main="Weekly sales of P2 witn and without promotion")
+1634377170490:axis(side=2, at=c(1, 2), labels=c("No", "Yes"))
+1634377202598:boxplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+1634377202611:ylab="P2 promoted in store?", xlab="Weekly sales", las=1,
+1634377202625:main="Weekly sales of P2 witn and without promotion")
+1634377209888:boxplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+1634377209902:ylab="P2 promoted in store?", xlab="Weekly sales",
+1634377209914:main="Weekly sales of P2 witn and without promotion")
+1634377210789:axis(side=2, at=c(1, 2), labels=c("No", "Yes"))
+1634377288045:library(beanplot)
+1634377409671:beanplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+1634377409684:what=c(0, 1, 1, 0), log="", side="Weekly sales",
+1634377409696:main="Weekly sales of P2 with and without promotion")
+1634377495959:beanplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+1634377495972:what=c(0, 1, 1, 0), log="", side="second",
+1634377495984:ylab="P2 promoted in store?", xlab="Weekly sales",
+1634377495997:main="Weekly sales of P2 with and without promotion")
+1634377565519:axis=(side=2, at=c(1,2), labels=c("No", "Yes"))
+1634377570717:axis(side=2, at=c(1,2), labels=c("No", "Yes"))
+1634377587906:beanplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+1634377587919:what=c(0, 1, 1, 0), log="", side="second",
+1634377587932:ylab="P2 promoted in store?", xlab="Weekly sales",
+1634377587944:main="Weekly sales of P2 with and without promotion",
+1634377587958:col="lightblue")
+1634377597178:axis(side=2, at=c(1,2), labels=c("No", "Yes"))
+1634378521191:# Q-Qプロット
+1634378521204:qqnorm(store.df$p1sales)
+1634378549264:qqline(store.df$p1sales)
+1634378664050:qqnorm(log(store.df$p1sales))
+1634378675604:qqline(log(store.df$p1sales))
+1634379464445:# 分布関数
+1634379464459:plot(ecdf(store$p1sales))
+1634379470475:# 分布関数
+1634379470488:plot(ecdf(store.df$p1sales))
+1634379484190:# 分布関数
+1634379484203:plot(store.df$p1sales)
+1634379680384:# 分布関数
+1634379680396:plot(ecdf(store.df$p1sales),
+1634379680408:main="Cumulative distribution of P1 Weekly Sales",
+1634379680421:ylab="Cumulative Proportion",
+1634379680434:xlab=c("P1 weekly sales, all stores",
+1634379680447:"90% of weeks sold <= 171 units"),
+1634379680461:yaxt="n")
+1634379763263:axis(side=2, at=seq(0, 1, by=10), las=1,
+1634379763274:labels=paste(seq(0, 100, by=10), "%", sep=""))
+1634379818129:axis(side=2, at=seq(0, 1, by=0.1), las=1,
+1634379818141:labels=paste(seq(0, 100, by=10), "%", sep=" "))
+1634379852086:axis(side=2, at=seq(0, 1, by=0.1), las=1,
+1634379852100:labels=paste(seq(0, 100, by=10), "%", sep=""))
+1634379855358:# 分布関数
+1634379855371:plot(ecdf(store.df$p1sales),
+1634379855384:main="Cumulative distribution of P1 Weekly Sales",
+1634379855397:ylab="Cumulative Proportion",
+1634379855413:xlab=c("P1 weekly sales, all stores",
+1634379855425:"90% of weeks sold <= 171 units"),
+1634379855438:yaxt="n")
+1634379856123:axis(side=2, at=seq(0, 1, by=0.1), las=1,
+1634379856137:labels=paste(seq(0, 100, by=10), "%", sep=""))
+1634379916807:abline(h=0.9, lty=3)
+1634379963428:abline(v=quantile(store.df$p1sales, pr=0.9), lty=3)
+1634380071130:?quantile
+1634381194387:by(store.df$p1sales, store.df$storeNum, mean)
+1634381269665:by(store.df$p1sales, list(store.df$storeNum, store.df$Year), mean)
+1634381364919:aggregate(store.df$p1sales, by=list(country=store.df$country), sum)
+1634381470472:p1sales.sum = aggregate(store.df$p1sales, by=list(country=store.df$country), sum)
+1634381479707:p1sales.sum
+1634381593425:library(rworldmap)
+1634381608701:library(RColorBrewer)
+1634381650351:library(rworldmap)
+1634381654917:library(RColorBrewer)
+1634381749140:p1sales.map = joinCountryData2Map(p1sales.sum, joinCode="ISO2", nameJoinColumn="country")
+1634381930818:mapCountryData(p1sales.map, nameColumnToPlot="x",
+1634381930834:mapTitle="Total P1 sales by Country",
+1634381930848:colourPalette=brewer.pal(7, "Greens"),
+1634381930863:catMethod="fixedWidth", addLegend=FALSE)
+1634399130144:set.seed(21821)
+1634399158402:ncust = 1000
+1634399196113:cust.df = data.frame(cust.id=factor(1:ncust))
+1634399215791:cust.df
+1634399236852:head(cust.df)
+1634399314047:cust.df$age = rnorm(n=ncust, mean=35, sd=5)
+1634399316456:head(cust.df)
+1634399413321:cust.df$credit.score = rnorm(n=ncust, mean=3*cust.df$age+620, sd=5)
+1634399415818:head(cust.df)
+1634399458259:cust.df$credit.score = rnorm(n=ncust, mean=3*cust.df$age+620, sd=50)
+1634399562948:cust.df$email = factor(sample(c("yes", "no"), size=ncust, replace=TRUE, prob=c(0.8, 0.2)))
+1634399752348:cust.df$distance.to.store = exp(rnorm(n=ncust, mean=2, sd=1.2))
+1634399792081:summary(cust.df)
+1634399877246:dim(cust.df)
+1634399894301:head(cust.df)
+1634399895167:tail(cust.df)
+1634399913314:some(cust.df)
+1634399949440:some(cust.df)
+1634399954095:summary(cust.df)
+1634399984407:str(cust.df)
+1634400051603:describe(cust.df)
+1634400563772:cust.df$online.visits =
+1634400563785:rnbinom(ncust, size=0.3,mu=15+ifelse(cust.df$email=="yes", 15, 0)-0.7*(cust.df$age-median(cust.df$age)))
+1634400649703:cust.df$online.visits =
+1634400649716:rnbinom(ncust, size=0.3,
+1634400649729:mu=15+ifelse(cust.df$email=="yes", 15, 0)-0.7*(cust.df$age-median(cust.df$age)))
+1634400836995:cust.df$online.trans =
+1634400837006:rnbinom(ncust, size=cust.df$online.visits, prob=0.3)
+1634400942194:cust.df$online.spend =
+1634400942206:exp(rnorm(ncust, mean=3, sd=0.1)) * cust.df$online.trans
+1634401087373:cust.df$store.trans =
+1634401087385:rnbinom(ncust, size=5, mu=3/sqrt(cust.df$distance.to.store))
+1634401214979:cust.df$store.spend =
+1634401214989:exp(rnorm(ncust, mean=3.5, sd=0.4)) * cust.df$store.trans
+1634401239404:# データフレームのチェック
+1634401239417:dim(cust.df)
+1634401240699:head(cust.df)
+1634401270726:tail(cust.df)
+1634401274573:some(cust.df)
+1634401303648:str(cust.df)
+1634401306296:summary(cust.df)
+1634401311214:describe(cust.df)
+1634402182563:# 満足度調査への回答を作成
+1634402182577:sat.overall = rnorm(ncust, mean=3.1, sd=0.7)
+1634402195536:summary(sat.overall)
+1634402336829:sat.service = floor(sat.overall + rnorm(ncust, mean=0.5, sd=0.4))
+1634402399741:sat.selection = floor(sat.overall + rnorm(ncust, mean=-0.2, sd=0.6))
+1634402446057:summary(cbind(sat.service, sat.selection))
+1634402606419:sat.service[sat.service > 5] = 5
+1634402606879:sat.service[sat.service < 1] = 1
+1634402607341:sat.selection[sat.selection > 5] = 5
+1634402607812:sat.selection[sat.selection < 1] = 1
+1634402617603:summary(cbind(sat.service, sat.selection))
+1634402883663:# 非回答データ
+1634402883675:no.response = as.logical(rbinom(ncust, size=1, prob=cust.df$age/100))
+1634402889138:no.response
+1634402955840:sat.selection[no.response] = NA
+1634402960882:sat.service[no.response] = NA
+1634402986569:sat.service[sat.service > 5] = 5
+1634402986582:sat.service[sat.service < 1] = 1
+1634402986593:sat.selection[sat.selection > 5] = 5
+1634402986604:sat.selection[sat.selection < 1] = 1
+1634402997378:sat.overall = rnorm(ncust, mean=3.1, sd=0.7)
+1634402997391:summary(sat.overall)
+1634402997402:sat.service = floor(sat.overall + rnorm(ncust, mean=0.5, sd=0.4))
+1634402997416:sat.selection = floor(sat.overall + rnorm(ncust, mean=-0.2, sd=0.6))
+1634402997428:summary(cbind(sat.service, sat.selection))
+1634403000932:sat.service[sat.service > 5] = 5
+1634403000945:sat.service[sat.service < 1] = 1
+1634403000958:sat.selection[sat.selection > 5] = 5
+1634403000970:sat.selection[sat.selection < 1] = 1
+1634403000983:summary(cbind(sat.service, sat.selection))
+1634403005688:no.response = as.logical(rbinom(ncust, size=1, prob=cust.df$age/100))
+1634403005701:no.response
+1634403043884:sat.service[no.response] = NA
+1634403044357:sat.selection[no.response] = NA
+1634403055022:summary(cbind(sat.service, sat.selection))
+1634403110464:str(cust.df)
+1634403224869:cust.df$sat.service = sat.service
+1634403225612:cust.df$sat.selection = sat.selection
+1634403237617:summary(cust.df)
+1634403295395:rm(ncust, sat.overall, sat.service, sat.selection, no.response)
+1634403315802:# 散布図でデータ間の関係を調べる
+1634403315812:str(cust.df)
+1634403512662:plot(x=cust.df$age, y=cust.df$credit.score)
+1634403752719:plot(cust.df$age, cust.df$credit.score,
+1634403752731:col="blue",
+1634403752743:xlim=c(15, 55), ylim=c(500, 900),
+1634403752755:main="Active Customers as of June 2014",
+1634403752768:xlab="Customer Age (years)", ylab="Customer Credit Score")
+1634403837083:abline(h=(cust.df$credit.score), col="dark blue", lty="dotted")
+1634403847963:abline(h=mean(cust.df$credit.score), col="dark blue", lty="dotted")
+1634403851147:plot(cust.df$age, cust.df$credit.score,
+1634403851159:col="blue",
+1634403851174:xlim=c(15, 55), ylim=c(500, 900),
+1634403851185:main="Active Customers as of June 2014",
+1634403851198:xlab="Customer Age (years)", ylab="Customer Credit Score")
+1634403852236:abline(h=mean(cust.df$credit.score), col="dark blue", lty="dotted")
+1634403874064:abline(v=mean(cust.df$age), col="dark blue", lty="dotted")
+1634404272202:method(plot)
+1634404280775:methods(plot)
+1634404491715:plot(cust.df$store.spend, cust.df$online.spend,
+1634404491729:main="Customers as of June 2014",
+1634404491742:xlab="Prior 12 months in-store sales ($)",
+1634404491757:ylab="Prior 12 months online sales ($)",
+1634404491771:cex=0.7)
+1634404816895:par(mfcol=c(1, 2))
+1634404819428:plot(cust.df$store.spend, cust.df$online.spend,
+1634404819441:main="Customers as of June 2014",
+1634404819452:xlab="Prior 12 months in-store sales ($)",
+1634404819467:ylab="Prior 12 months online sales ($)",
+1634404819477:cex=0.7)
+1634404830609:plot(cust.df$store.spend, cust.df$online.spend,
+1634404830620:main="Customers as of June 2014",
+1634404830632:xlab="Prior 12 months in-store sales ($)",
+1634404830648:ylab="Prior 12 months online sales ($)")
+1634404863429:par(mfcol=c(1, 1))
+1634404869288:plot(cust.df$store.spend, cust.df$online.spend,
+1634404869300:main="Customers as of June 2014",
+1634404869313:xlab="Prior 12 months in-store sales ($)",
+1634404869326:ylab="Prior 12 months online sales ($)",
+1634404869338:cex=0.7)
+1634405050966:hist(cust.df$store.spend,
+1634405050981:breaks=(0:ceiling(max(cust.df$store.spend)/10))*10,
+1634405050996:main="Customers as of June 2014",
+1634405051009:xlab="Prior 12 months in-store sales ($)",
+1634405051023:ylab="Count of customers")
+1634405118246:?seiling
+1634405122798:?ceiling
+1634405249225:hist(cust.df$store.spend,
+1634405249236:breaks=(0:ceiling(max(cust.df$store.spend)/10))*10,
+1634405249248:main="Customers as of June 2014",
+1634405249261:xlab="Prior 12 months in-store sales ($)",
+1634405249275:ylab="Count of customers")
+1634405378576:my.col = c("black", "green3")
+1634405394587:my.pch = c(1, 19)
+1634405463617:head(cust.df$email)
+1634405490521:as.numeric(head(cust.df$email))
+1634405549560:my.col
+1634405589865:my.col[as.numeric(head(cust.df$email))]
+1634405625754:my.col[as.numeric(cust.df$email)]
+1634405644769:my.col[head(cust.df$email)]
+1634405803238:plot(cust.df$store.spend, cust.df$online.spend,
+1634405803248:cex=0.7,
+1634405803259:col=my.col[cust.df$email],
+1634405803268:pch=my.pch[cust.df$email],
+1634405803278:main="Customers as of June 2014",
+1634405803287:xlab="Prior 12 months in-store sales ($)",
+1634405803297:ylab="Prior 12 months online sales ($)")
+1634406030653:par(mfcol=c(1, 1))
+1634406031687:plot(cust.df$store.spend, cust.df$online.spend,
+1634406031698:cex=0.7,
+1634406031710:col=my.col[cust.df$email],
+1634406031722:pch=my.pch[cust.df$email],
+1634406031734:main="Customers as of June 2014",
+1634406031746:xlab="Prior 12 months in-store sales ($)",
+1634406031758:ylab="Prior 12 months online sales ($)")
+1634406042277:par(mfcol=c(1, 2))
+1634406042905:plot(cust.df$store.spend, cust.df$online.spend,
+1634406042917:cex=0.7,
+1634406042929:col=my.col[cust.df$email],
+1634406042942:pch=my.pch[cust.df$email],
+1634406042954:main="Customers as of June 2014",
+1634406042967:xlab="Prior 12 months in-store sales ($)",
+1634406042978:ylab="Prior 12 months online sales ($)")
+1634406044366:plot(cust.df$store.spend, cust.df$online.spend,
+1634406044377:cex=0.7,
+1634406044389:col=my.col[cust.df$email],
+1634406044401:main="Customers as of June 2014",
+1634406044413:xlab="Prior 12 months in-store sales ($)",
+1634406044426:ylab="Prior 12 months online sales ($)")
+1634406098502:par(mfcol=c(1, 1))
+1634406544434:par(mfcol=c(1, 1))
+1634406551016:plot(cust.df$store.spend, cust.df$online.spend,
+1634406551028:cex=0.7,
+1634406551040:col=my.col[cust.df$email],
+1634406551054:pch=my.pch[cust.df$email],
+1634406551066:main="Customers as of June 2014",
+1634406551077:xlab="Prior 12 months in-store sales ($)",
+1634406551092:ylab="Prior 12 months online sales ($)")
+1634406651128:legend(x="topright",
+1634406651141:legend=paste("email on file:", levels(cust.df$email)),
+1634406651152:col=my.col, pch=my.pch)
+1634407230450:plot(cust.df$store.spend + 1, cust.df$online.spend +1,
+1634407230462:log="xy",
+1634407230476:cex=0.7,
+1634407230489:col=my.col[cust.df$email],
+1634407230500:pch=my.pch[cust.df$email],
+1634407230511:main="Customers as of June 2014",
+1634407230524:xlab="Prior 12 months in-store sales ($)",
+1634407230537:ylab="Prior 12 months online sales ($)")
+1634407230593:legend(x="topright",
+1634407230606:legend=paste("email on file:", levels(cust.df$email)),
+1634407230617:col=my.col, pch=my.pch)
+1634407264497:par(mfcol=c(1, 2))
+1634407271202:plot(cust.df$store.spend, cust.df$online.spend,
+1634407271215:cex=0.7,
+1634407271227:col=my.col[cust.df$email],
+1634407271240:pch=my.pch[cust.df$email],
+1634407271250:main="Customers as of June 2014",
+1634407271261:xlab="Prior 12 months in-store sales ($)",
+1634407271274:ylab="Prior 12 months online sales ($)")
+1634407271340:legend(x="topright",
+1634407271353:legend=paste("email on file:", levels(cust.df$email)),
+1634407271365:col=my.col, pch=my.pch)
+1634407274677:plot(cust.df$store.spend + 1, cust.df$online.spend +1,
+1634407274689:log="xy",
+1634407274702:cex=0.7,
+1634407274714:col=my.col[cust.df$email],
+1634407274725:pch=my.pch[cust.df$email],
+1634407274736:main="Customers as of June 2014",
+1634407274748:xlab="Prior 12 months in-store sales ($)",
+1634407274759:ylab="Prior 12 months online sales ($)")
+1634407274784:legend(x="topright",
+1634407274797:legend=paste("email on file:", levels(cust.df$email)),
+1634407274809:col=my.col, pch=my.pch)

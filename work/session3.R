@@ -1,6 +1,6 @@
 
 
-# sesseion3-1 -------------------------------------------------------------
+# session3-1 -------------------------------------------------------------
 
 # データの作成
 k.stores = 20
@@ -63,3 +63,222 @@ head(store.df)
 
 library(car)
 some(store.df, 10)
+str(store.df)
+
+
+# session3-2 --------------------------------------------------------------
+
+# 離散変数
+table(store.df$p1price)
+p1.table = table(store.df$p1price)
+str(p1.table)
+plot(p1.table)
+
+table(store.df$p1price, store.df$p1prom)
+p1.table2 = table(store.df$p1price, store.df$p1prom)
+p1.table2[, 2] / (p1.table2[, 1] + p1.table2[, 2])
+
+# 連続関数
+min(store.df$p1sales)
+max(store.df$p2sales)
+mean(store.df$p1prom)
+median(store.df$p2sales)
+var(store.df$p1sales)
+sd(store.df$p1sales)
+IQR(store.df$p1sales)
+mad(store.df$p1sales)
+quantile(store.df$p1sales, probs=c(0.25, 0.50, 0.75))
+quantile(store.df$p1sales, probs=c(0.05, 0.95))
+quantile(store.df$p1sales, probs=0:10/10)
+quantile(store.df$p1sales, probs=seq(from=0, to=1, by=0.1))
+quantile(store.df$p1sales, probs=seq(0, 1, 0.1))
+
+mysummary.df = data.frame(matrix(NA, nrow=2, ncol=2))
+names(mysummary.df) = c("Median Sales", "IQR")
+rownames(mysummary.df) = c("Product 1", "Product 2")
+mysummary.df["Product 1", "Median Sales"] = median(store.df$p1sales)
+mysummary.df["Product 2", "Median Sales"] = median(store.df$p2sales)
+mysummary.df["Product 1", "IQR"] = IQR(store.df$p1sales)
+mysummary.df["Product 2", "IQR"] = IQR(store.df$p2sales)
+mysummary.df
+
+
+
+# session3-3 --------------------------------------------------------------
+
+summary(store.df)
+summary(store.df$Year)
+summary(store.df, digits=2)
+
+describe(store.df)
+describe(store.df[, c(2, 4:9)])
+
+apply(store.df[, 2:9], MARGIN=2, FUN=mean)
+apply(store.df[, 2:9], MARGIN=1, FUN=mean)
+apply(store.df[, 2:9], MARGIN=2, FUN=sum)
+apply(store.df[, 2:9], MARGIN=2, FUN=sd)
+apply(store.df[, 2:9], MARGIN=2, FUN=function(x){mean(x)-median(x)})
+
+
+# session3-4 --------------------------------------------------------------
+
+# ヒストグラム
+
+hist(store.df$p1sales)
+
+hist(store.df$p1sales,
+     main="Product 1 Weekly Sales Frequencies, All stores",
+     xlab="Product 1 Sales (Units)",
+     ylab="Count")
+
+hist(store.df$p1sales,
+     main="Product 1 Weekly Sales Frequencies, All stores",
+     xlab="Product 1 Sales (Units)",
+     ylab="Count",
+     breaks=30,
+     col="lightblue")
+
+hist(store.df$p1sales,
+     main="Product 1 Weekly Sales Frequencies, All stores",
+     xlab="Product 1 Sales (Units)",
+     ylab="Count",
+     breaks=30,
+     col="lightblue",
+     freq=FALSE,
+     xaxt="n")
+axis(side=1, at=seq(60, 300, by=20))
+lines(density(store.df$p1sales, bw=10),
+      type="l",
+      col="darkred",
+      lwd=2)
+
+hist(store.df$p2sales,
+     main="Product 2 Weekly Sales Frequencies, All stores",
+     xlab="Product 2 Sales (Units)",
+     ylab="Count",
+     breaks=30,
+     col="lightblue",
+     freq=FALSE,
+     xaxt="n")
+axis(side=1, at=seq(40, 300, by=20))
+lines(density(store.df$p2sales, bw=10),
+      type="l",
+      col="darkred",
+      lwd=2)
+
+
+# 二つ並べる場合
+
+def.par <- par(no.readonly = TRUE)  # リセット用
+par(mfcol=c(1, 2))
+# layout(matrix(1:2, ncol=2))
+?par
+
+hist(store.df$p1sales,
+     main="Product 1 Weekly Sales Frequencies, All stores",
+     xlab="Product 1 Sales (Units)",
+     ylab="Count",
+     breaks=30,
+     col="lightblue",
+     freq=FALSE,
+     xlim=c(40, 260),
+     ylim=c(0, 0.025))
+
+lines(density(store.df$p1sales, bw=10),
+      type="l",
+      col="darkred",
+      lwd=2)
+
+hist(store.df$p2sales,
+     main="Product 2 Weekly Sales Frequencies, All stores",
+     xlab="Product 2 Sales (Units)",
+     ylab="Count",
+     breaks=30,
+     col="lightblue",
+     freq=FALSE,
+     xlim=c(40, 260),
+     ylim=c(0, 0.025))
+     
+lines(density(store.df$p2sales, bw=10),
+      type="l",
+      col="darkred",
+      lwd=2)
+
+par(def.par)  # デフォルトに戻す
+
+
+# 箱ひげ図
+
+boxplot(store.df$p2sales, xlab="Weekly sales", ylab="P2",
+        main="Weekly sales of P2, All stores", horizontal=TRUE)
+
+boxplot(store.df$p2sales ~ store.df$storeNum, horizontal=TRUE,
+        ylab="Store", xlab="Weekly unit sales", las=1,
+        main="Weekly sales of P2, by store")
+
+boxplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+        ylab="P2 promoted in store?", xlab="Weekly sales",
+        main="Weekly sales of P2 witn and without promotion")
+axis(side=2, at=c(1, 2), labels=c("No", "Yes"))
+
+
+library(beanplot)
+beanplot(p2sales ~ p2prom, data=store.df, horizontal=TRUE, yaxt="n",
+         what=c(0, 1, 1, 0), log="", side="second",
+         ylab="P2 promoted in store?", xlab="Weekly sales",
+         main="Weekly sales of P2 with and without promotion",
+         col="lightblue")
+axis(side=2, at=c(1,2), labels=c("No", "Yes"))
+
+
+# Q-Qプロット
+qqnorm(store.df$p1sales)
+qqline(store.df$p1sales)
+
+qqnorm(log(store.df$p1sales))
+qqline(log(store.df$p1sales))
+
+
+# 分布関数
+plot(ecdf(store.df$p1sales),
+     main="Cumulative distribution of P1 Weekly Sales",
+     ylab="Cumulative Proportion",
+     xlab=c("P1 weekly sales, all stores",
+            "90% of weeks sold <= 171 units"),
+     yaxt="n")
+axis(side=2, at=seq(0, 1, by=0.1), las=1,
+     labels=paste(seq(0, 100, by=10), "%", sep=""))
+abline(h=0.9, lty=3)
+abline(v=quantile(store.df$p1sales, pr=0.9), lty=3)
+
+?quantile
+
+
+# byとaggregate
+
+by(store.df$p1sales, store.df$storeNum, mean)
+by(store.df$p1sales, list(store.df$storeNum, store.df$Year), mean)
+
+aggregate(store.df$p1sales, by=list(country=store.df$country), sum)
+
+p1sales.sum = aggregate(store.df$p1sales, by=list(country=store.df$country), sum)
+p1sales.sum
+
+# 地図の利用
+
+library(rworldmap)
+library(RColorBrewer)
+
+p1sales.map = joinCountryData2Map(p1sales.sum, joinCode="ISO2", nameJoinColumn="country")
+
+mapCountryData(p1sales.map, nameColumnToPlot="x",
+               mapTitle="Total P1 sales by Country",
+               colourPalette=brewer.pal(7, "Greens"),
+               catMethod="fixedWidth", addLegend=FALSE)
+
+
+
+
+
+
+
