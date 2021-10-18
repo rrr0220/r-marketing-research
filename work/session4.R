@@ -140,6 +140,9 @@ plot(cust.df$store.spend, cust.df$online.spend,
 par(mfcol=c(1, 1))
 
 # 凡例をつける
+
+par(mfcol=c(1, 2))
+
 plot(cust.df$store.spend, cust.df$online.spend,
      cex=0.7,
      col=my.col[cust.df$email],
@@ -164,3 +167,119 @@ legend(x="topright",
        legend=paste("email on file:", levels(cust.df$email)),
        col=my.col, pch=my.pch)
 
+par(mfcol=c(1, 1))
+
+# 複数のグラフを１つのオブジェクトにまとめる
+
+par(mfrow=c(2, 2))
+plot(cust.df$distance.to.store, cust.df$store.spend, main="store")
+plot(cust.df$distance.to.store, cust.df$online.spend, main="online")
+plot(cust.df$distance.to.store, cust.df$store.spend + 1, log="xy", main="store, log")
+plot(cust.df$distance.to.store, cust.df$online.spend + 1, log="xy", main="online, log")
+par(mfcol=c(1, 1))
+
+
+
+# session4-4 --------------------------------------------------------------
+
+pairs(formula = ~ age + credit.score + email +
+        distance.to.store + online.visits + online.trans +
+        online.spend + store.trans + store.spend,
+      data=cust.df)
+
+pairs(cust.df[, c(2:10)])
+
+library(car)
+scatterplotMatrix(formula = ~ age + credit.score + email +
+                    distance.to.store + online.visits + online.trans +
+                    online.spend + store.trans + store.spend,
+                  data=cust.df,
+                  diagonal="histgram")
+
+
+
+# session4-5 --------------------------------------------------------------
+
+# 共分散
+cov(cust.df$age, cust.df$credit.score)
+
+# Pearsonの積率相関係数
+cor(cust.df$age, cust.df$credit.score)
+
+cov(cust.df$age, cust.df$credit.score)/((sd(cust.df$age))*(sd(cust.df$credit.score)))
+
+# 相関係数の検定
+cor.test(cust.df$age, cust.df$credit.score)
+
+# 相関行列
+cor(cust.df[, c(2, 3, 5:12)])
+cor(cust.df[, c(2, 3, 5:12)], use="complete.obs")
+
+library(corrplot)
+library(gplots)
+corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+               upper="ellipse", 
+               tl.pos="lt")
+?corrplot.mixed
+
+corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+               upper="ellipse", 
+               tl.pos="lt",
+               lower.col=colorpanel(50, "red", "gray60", "blue4"),
+               upper.col=colorpanel(50, "red", "gray60", "blue4"))
+
+
+# 変数変換
+set.seed(49931)
+x = runif(1000, min=-10, max=10)
+plot(x, x^2)
+cor(x, x^2)
+
+cor(cust.df$distance.to.store, cust.df$store.spend)
+cor(1/cust.df$distance.to.store, cust.df$store.spend)
+cor(1/sqrt(cust.df$distance.to.store), cust.df$store.spend)
+
+plot(cust.df$distance.to.store, cust.df$store.spend)
+plot(1/sqrt(cust.df$distance.to.store), cust.df$store.spend)
+
+
+# Box-Cox変換
+library(car)
+powerTransform(cust.df$distance.to.store)
+lambda = coef(powerTransform(cust.df$distance.to.store))
+bcPower(cust.df$distance.to.store, lambda)
+?coef
+
+par(mfrow=c(1, 2))
+hist(cust.df$distance.to.store,
+     xlab="Distance to Nearest Store",
+     ylab="Count of Customers",
+     main="Original Distribution")
+hist(bcPower(cust.df$distance.to.store, lambda),
+     xlab="Box-Cox Transform of Distance",
+     ylab="Count of Customers",
+     main="Transformed Distribution")
+
+l.dist = coef(powerTransform(cust.df$distance.to.store))
+l.spend = coef(powerTransform(cust.df$store.spend+1))
+cor(bcPower(cust.df$distance.to.store, l.dist),
+    bcPower(cust.df$store.spend+1, l.spend))
+
+par(mfrow=c(1, 1))
+
+# session4-6 --------------------------------------------------------------
+
+plot(cust.df$sat.service, cust.df$sat.selection,
+     xlab="Customer Satisfaction with Service",
+     ylab="Customer Satisfaction with Selecyion",
+     main="Customers as of June 2014")
+
+plot(jitter(cust.df$sat.service), jitter(cust.df$sat.selection),
+     xlab="Customer Satisfaction with Service",
+     ylab="Customer Satisfaction with Selecyion",
+     main="Customers as of June 2014")
+
+
+resp = !is.na(cust.df$sat.service)
+cor(cust.df$sat.service[resp], cust.df$sat.selection[resp])
+polychoric(cbind(cust.df$sat.service[resp], cust.df$sat.selection[resp]))
