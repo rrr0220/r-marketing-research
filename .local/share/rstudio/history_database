@@ -841,3 +841,165 @@
 1634407274784:legend(x="topright",
 1634407274797:legend=paste("email on file:", levels(cust.df$email)),
 1634407274809:col=my.col, pch=my.pch)
+1634446838468:# 対数軸に変換
+1634446838480:plot(cust.df$store.spend + 1, cust.df$online.spend +1,
+1634446838493:log="xy",
+1634446838507:cex=0.7,
+1634446838521:col=my.col[cust.df$email],
+1634446838532:pch=my.pch[cust.df$email],
+1634446838544:main="Customers as of June 2014",
+1634446838557:xlab="Prior 12 months in-store sales ($)",
+1634446838568:ylab="Prior 12 months online sales ($)")
+1634446838659:legend(x="topright",
+1634446838672:legend=paste("email on file:", levels(cust.df$email)),
+1634446838684:col=my.col, pch=my.pch)
+1634446848782:par(mfcol=c(1, 2))
+1634446848801:plot(cust.df$store.spend, cust.df$online.spend,
+1634446848813:cex=0.7,
+1634446848824:col=my.col[cust.df$email],
+1634446848837:pch=my.pch[cust.df$email],
+1634446848848:main="Customers as of June 2014",
+1634446848859:xlab="Prior 12 months in-store sales ($)",
+1634446848871:ylab="Prior 12 months online sales ($)")
+1634446848928:plot(cust.df$store.spend, cust.df$online.spend,
+1634446848942:cex=0.7,
+1634446848955:col=my.col[cust.df$email],
+1634446848968:main="Customers as of June 2014",
+1634446848980:xlab="Prior 12 months in-store sales ($)",
+1634446848993:ylab="Prior 12 months online sales ($)")
+1634446869158:par(mfcol=c(1, 2))
+1634446869176:plot(cust.df$store.spend, cust.df$online.spend,
+1634446869190:cex=0.7,
+1634446869201:col=my.col[cust.df$email],
+1634446869214:pch=my.pch[cust.df$email],
+1634446869227:main="Customers as of June 2014",
+1634446869240:xlab="Prior 12 months in-store sales ($)",
+1634446869252:ylab="Prior 12 months online sales ($)")
+1634446869304:legend(x="topright",
+1634446869317:legend=paste("email on file:", levels(cust.df$email)),
+1634446869329:col=my.col, pch=my.pch)
+1634446869350:# 対数軸に変換
+1634446869363:plot(cust.df$store.spend + 1, cust.df$online.spend +1,
+1634446869375:log="xy",
+1634446869387:cex=0.7,
+1634446869400:col=my.col[cust.df$email],
+1634446869412:pch=my.pch[cust.df$email],
+1634446869426:main="Customers as of June 2014",
+1634446869438:xlab="Prior 12 months in-store sales ($)",
+1634446869450:ylab="Prior 12 months online sales ($)")
+1634446869567:legend(x="topright",
+1634446869580:legend=paste("email on file:", levels(cust.df$email)),
+1634446869592:col=my.col, pch=my.pch)
+1634447485491:par(mfrow=c(2, 2))
+1634447485503:plot(cust.df$distance.to.store, cust.df$store.spend, main="store")
+1634447485563:plot(cust.df$distance.to.store, cust.df$online.spend, main="online")
+1634447485587:plot(cust.df$distance.to.store, cust.df$store.spend + 1, log="xy", main="store, log")
+1634447485615:plot(cust.df$distance.to.store, cust.df$online.spend + 1, log="xy", main="online, log")
+1634447497847:par(mfrow=c(2, 2))
+1634447497859:plot(cust.df$distance.to.store, cust.df$store.spend, main="store")
+1634447497907:plot(cust.df$distance.to.store, cust.df$online.spend, main="online")
+1634447497931:plot(cust.df$distance.to.store, cust.df$store.spend + 1, log="xy", main="store, log")
+1634447497956:plot(cust.df$distance.to.store, cust.df$online.spend + 1, log="xy", main="online, log")
+1634448244280:par(mfcol=c(1, 1))
+1634448574994:pairs(formula = ~ age + credit.score + email +
+1634448575007:distance.to.store + online.visits + online.trans +
+1634448575018:online.spend + store.trans + store.spend,
+1634448575030:data=cust.df)
+1634449543845:pairs(cust.df[, c(2:10)])
+1634449548345:plot(cust.df$distance.to.store, cust.df$store.spend, main="store")
+1634449550696:pairs(cust.df[, c(2:10)])
+1634449680843:scatterplotMatrix(formula = ~ age + credit.score + email +
+1634449680855:distance.to.store + online.visits + online.trans +
+1634449680867:online.spend + store.trans + store.spend,
+1634449680880:data=cust.df,
+1634449680894:diagonal="histgram")
+1634563969047:library(car)
+1634563969071:scatterplotMatrix(formula = ~ age + credit.score + email +
+1634563969083:distance.to.store + online.visits + online.trans +
+1634563969095:online.spend + store.trans + store.spend,
+1634563969109:data=cust.df,
+1634563969120:diagonal="histgram")
+1634564058289:cov(cust.df$age, cust.df$credit.score)
+1634565010009:# Pearsonの積率相関係数
+1634565010022:cor(cust.df$age, cust.df$credit.score)
+1634565063794:cov(cust.df$age, cust.df$credit.score)/(sd(cust.df$age))*(sd(cust.df$credit.score))
+1634565077439:cov(cust.df$age, cust.df$credit.score)/((sd(cust.df$age))*(sd(cust.df$credit.score)))
+1634565803164:# 相関係数の検定
+1634565803176:cor.test(cust.df$age, cust.df$credit.score)
+1634566083584:# 相関行列
+1634566083596:cor(cust.df[, c(2, 3, 5:12)])
+1634566127955:?cor
+1634566168052:cor(cust.df[, c(2, 3, 5:12)], na.rm=TRUE)
+1634566276559:cor(cust.df[, c(2, 3, 5:12)], use="complete.obs")
+1634566379276:library(gplots)
+1634566381873:library(corrplot)
+1634566521050:corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+1634566521060:upper="elipse", tl.pos="lt",
+1634566521072:col=colorpanel(50, "red", "gray60", "blue4"))
+1634566555636:corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+1634566555646:upper="ellipse", tl.pos="lt",
+1634566555656:col=colorpanel(50, "red", "gray60", "blue4"))
+1634566629339:corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+1634566629352:upper="ellipse",
+1634566629364:tl.pos="lt",
+1634566629377:col = colorpanel(50, "red", "gray60", "blue4"))
+1634566650427:?corrplot.mixed
+1634566743797:corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+1634566743809:upper="ellipse",
+1634566743822:tl.pos="lt")
+1634566760210:?corrplot.mixed
+1634566820612:corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+1634566820624:upper="ellipse",
+1634566820638:tl.pos="lt",
+1634566820651:lower.col=colorpanel(50, "red", "gray60", "blue4"))
+1634566842427:corrplot.mixed(corr=cor(cust.df[, c(2, 3, 5:12)], use="complete.obs"),
+1634566842439:upper="ellipse",
+1634566842451:tl.pos="lt",
+1634566842464:lower.col=colorpanel(50, "red", "gray60", "blue4"),
+1634566842476:upper.col=colorpanel(50, "red", "gray60", "blue4"))
+1634567734052:# 変数変換
+1634567734063:set.seed(49931)
+1634567761124:x = runif(1000, min=-10, max=10)
+1634567766093:x
+1634567776994:cor(x, x^2)
+1634567832605:plot(x, x^2)
+1634567934288:cor(cust.df$distance.to.store, cust.df$store.spend)
+1634567992044:cor(1/cust.df$distance.to.store, cust.df$store.spend)
+1634568019484:cor(1/sqrt(cust.df$distance.to.store), cust.df$store.spend)
+1634568133800:plot(cust.df$distance.to.store, cust.df$store.spend)
+1634568153960:plot(1/sqrt(cust.df$distance.to.store), cust.df$store.spend)
+1634568670322:# Box-Cox変換
+1634568670335:library(car)
+1634568693222:powerTransform(cust.df$distance.to.store)
+1634568955728:lambda = powerTransform(cust.df$distance.to.store)
+1634569030105:bcPower(cust.df$distance.to.store, lambda)
+1634569073217:lambda = coef(powerTransform(cust.df$distance.to.store))
+1634569079464:bcPower(cust.df$distance.to.store, lambda)
+1634569100555:?coef
+1634569170622:par(mfrow(1, 2))
+1634569181601:par(mfrow=c(1, 2))
+1634569377523:par(mfrow=c(1, 2))
+1634569379154:hist(cust.df$distance.to.store,
+1634569379165:xlab="Distance to Nearest Store",
+1634569379176:ylab="Count of Customers",
+1634569379189:main="Original Distribution")
+1634569379932:hist(bcPower(cust.df$distance.to.store, lambda),
+1634569379944:xlab="Box-Cox Transform of Distance",
+1634569379957:ylab="Count of Customers",
+1634569379969:main="Transformed Distribution")
+1634570052849:l.dist = coef(powerTransform(cust.df$distance.to.store))
+1634570053694:l.spend = coef(powerTransform(cust.df$store.spend+1))
+1634570137037:cor(bcPower(cust.df$distance.to.store, l.dist),
+1634570137050:bcPower(cust.df$store.spend+1, l.spend))
+1634570205967:par(mfrow=c(1, 1))
+1634570351948:plot(cust.df$sat.service, cust.df$sat.selection,
+1634570351960:xlab="Customer Satisfaction with Service",
+1634570351973:ylab="Customer Satisfaction with Selecyion",
+1634570351984:main="Customers as of June 2014")
+1634570432394:plot(jitter(cust.df$sat.service), jitter(cust.df$sat.selection),
+1634570432408:xlab="Customer Satisfaction with Service",
+1634570432421:ylab="Customer Satisfaction with Selecyion",
+1634570432433:main="Customers as of June 2014")
+1634570703027:resp = !is.na(cust.df$sat.service)
+1634570778079:cor(cust.df$sat.service[resp], cust.df$sat.selection[resp])
+1634570823146:polychoric(cbind(cust.df$sat.service[resp], cust.df$sat.selection[resp]))
